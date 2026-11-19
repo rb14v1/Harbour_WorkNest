@@ -129,6 +129,25 @@ cd frontend
 npm run build
 ```
 
+## Docker (not yet verified)
+
+The root `docker-compose.yml` runs MongoDB, the backend and the frontend (nginx). It was written without Docker available, so the images have not been built or started. Verify before relying on it:
+
+```powershell
+cd c:\Users\admin\Downloads\project-handover
+Copy-Item .env.example .env
+docker compose up --build
+```
+
+- Frontend: `http://localhost:8080`
+- Backend: `http://localhost:8000`, health at `/health`, Swagger at `/docs`
+
+`healthz.py` at the root checks the backend health endpoint. Set `HEALTH_URL` to target a different host:
+
+```powershell
+python healthz.py
+```
+
 ## API documentation
 
 Interactive documentation is served by FastAPI at `/docs`. Endpoint summaries and example payloads are in [docs/API.md](docs/API.md).
@@ -163,4 +182,4 @@ Letters are Unicode-aware, so names such as `Zoë Müller` are accepted.
 - The list endpoints return at most 500 records each. There is no pagination.
 - Deleting a task removes its ID from any handover that linked it.
 - Deactivating an employee does not remove them from existing project teams or task assignments.
-- Harbour deployment, Docker and CI are not configured (see note at the top).
+- Harbour deployment is not configured. Docker files and the GitHub Actions workflow are present but unverified (see Docker section and `infra/README.md`).
