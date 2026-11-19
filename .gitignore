@@ -1,0 +1,22 @@
+# Secrets and local configuration
+.env
+**/.env
+!**/.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+**/.venv/
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/build/
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
